@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB_NAME = "paytm";
+const DB_NAME = "cashvo";
 require("dotenv").config();
 
 const dbconnect = async () => {
@@ -11,8 +11,8 @@ const dbconnect = async () => {
       `MongoDb connected!! DB Host: ${connectionInstance.connection.host}`
     );
   } catch (error) {
-    console.error("MongoDB connection error....!");
+    console.error("MongoDB connection error....!", error);
   }
 };
 
-module.exports = dbconnect; 
+module.exports = dbconnect;

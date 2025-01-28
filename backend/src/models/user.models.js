@@ -9,7 +9,7 @@ const userschema = new mongoose.Schema(
       lowercase: true,
       trim: true,
       index: true,
-      min: [7, "username should be at least 7 characters"],
+      min: [5, "username should be at least 5 characters"],
     },
     email: {
       type: String,
@@ -22,6 +22,8 @@ const userschema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      min: [8, "username should be at least 8 characters"],
+
     },
     firstname: {
       type: String,

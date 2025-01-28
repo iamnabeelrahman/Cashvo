@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 
 //routes import
-const userRoutes = require("./routes/index.js");
+const mainRouter = require("./routes/index.js");
 
 
 //routes declaration
@@ -28,6 +28,6 @@ app.get('/register', (req, res) => {
     })
 } )
 
-app.use('/api/v1', userRoutes); // https//:localhost:300/api/v1/users ( here v is version of our api currently its 1 so, v1)
+app.use('/api/v1', mainRouter); // https//:localhost:300/api/v1/users ( here v is version of our api currently its 1 so, v1)
 
 module.exports = { app };
