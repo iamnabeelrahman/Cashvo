@@ -11,7 +11,7 @@ const accountSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-},   { timestamps: true } 
+},   { timestamps : true } 
 
 )
 

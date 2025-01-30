@@ -25,11 +25,11 @@ const userschema = new mongoose.Schema(
       min: [8, "username should be at least 8 characters"],
 
     },
-    firstname: {
+    firstName: {
       type: String,
       required: true,
     },
-    lastname: {
+    lastName: {
       type: String,
       required: true,
     },

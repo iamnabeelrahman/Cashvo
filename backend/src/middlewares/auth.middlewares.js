@@ -1,13 +1,15 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/user.models");
 
-const verifyExixtence = async (re, res, next) => {
+const verifyExistence = async (req, res, next) => {
   const token =
     req.cookies?.accessToken ||
     req.header.authorization?.replace("Bearer ", "");
 
   if (!token) {
-    return res.status(403).json({});
+    return res.status(403).json({
+      msg: "Invalid access"
+    });
   }
 
   try {
@@ -33,5 +35,5 @@ const verifyExixtence = async (re, res, next) => {
 };
 
 module.exports = {
-  verifyExixtence,
+  verifyExistence,
 };

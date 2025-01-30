@@ -1,3 +1,4 @@
+const { Account } = require("../models/accounts.models");
 const { User } = require("../models/user.models");
 const { signupSchema, signInSchema } = require("../models/zod/auth.schema");
 const jwt = require("jsonwebtoken")
@@ -21,7 +22,6 @@ const signupUser = async (req, res) => {
   });
 
   let message = "";
-
   if (checkUsername) {
     message += "Username already taken";
   }
@@ -45,6 +45,11 @@ const signupUser = async (req, res) => {
   }, process.env.JWT_SECRET, {
     expiresIn: process.env.TOKEN_EXPIRY
   });
+
+  await Account.create({
+    userId: newUser._id,
+    balance: Math.random() * 10000 + 1
+  })
 
   return res.status(200).json({
     success: true,

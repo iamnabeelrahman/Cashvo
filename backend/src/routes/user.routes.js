@@ -4,6 +4,6 @@ const { verifyExixtence } = require('../middlewares/auth.middlewares');
 
 const router = Router()
 
-router.route("/bulk").put(verifyExixtence)
+router.route("/bulk").put()
 
 module.exports = router;
