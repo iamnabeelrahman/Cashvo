@@ -59,7 +59,7 @@ const signupUser = async (req, res) => {
   });
 };
 
-const siginpUser = (req , res) => {
+const signinUser = (req , res) => {
   const { username, email, password } = req.body;
 };
 module.exports = {

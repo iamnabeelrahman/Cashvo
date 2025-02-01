@@ -4,20 +4,22 @@ const { User } = require("../models/user.models");
 const verifyExistence = async (req, res, next) => {
   const token =
     req.cookies?.accessToken ||
-    req.header.authorization?.replace("Bearer ", "");
+    req.headers.authorization?.replace("Bearer ", "");
 
   if (!token) {
     return res.status(403).json({
-      msg: "Invalid access"
+      msg: "Invalid access",
     });
   }
 
   try {
     const decodeToken = jwt.verify(token, process.env.JWT_SECRET);
-    if (decodeToken._id) {
-      const userDetails = await User.findById(decodeToken?._id).select(
+
+    if (decodeToken?.userId) {
+      console.log("token id:  ", decodeToken.userId);
+      const userDetails = await User.findById(decodeToken?.userId).select(
         "-password -refreshToken"
-      );
+      );      
 
       if (!userDetails) {
         return res.status(403).json({
@@ -25,12 +27,15 @@ const verifyExistence = async (req, res, next) => {
           message: "Invalid access token",
         });
       }
-
       req.user = userDetails;
       next();
     }
   } catch (error) {
-    return res.status(403).json({});
+    console.error("JWT verification error:", error);
+    return res.status(403).json({
+      msg: "Invalid access token",
+      error: error.message, // Optional, useful for debugging
+    });
   }
 };
 

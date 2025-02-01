@@ -6,6 +6,6 @@ const { verifyExistence } = require('../middlewares/auth.middlewares');
 const router = Router();
 
 router.route("/balance").get( verifyExistence, getBalance)
-router.route("/balance").get( verifyExistence, transferBalance)
+router.route("/transfer").post( verifyExistence, transferBalance)
 
 module.exports = router;
